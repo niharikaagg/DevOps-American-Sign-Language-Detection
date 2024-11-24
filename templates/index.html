@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Language Detection</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 90%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .content {
+        display: flex;
+        flex: 1;
+      }
+      .left,
+      .right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .left {
+        border-right: 2px solid #ddd;
+      }
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        margin: 20px 0;
+        color: #333;
+      }
+      h2 {
+        margin-bottom: 15px;
+        color: #555;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign Language Detection Application</h1>
+      <div class="content">
+        <!-- Left side: Webcam feed -->
+        <div class="left">
+          <h2>Live Webcam Feed</h2>
+          <img
+            id="video-feed"
+            src="{{ url_for('video_feed') }}"
+            alt="Webcam Feed"
+          />
+        </div>
+
+        <!-- Right side: Static image -->
+        <div class="right">
+          <h2>Static Example Image</h2>
+          <img
+            src="{{ url_for('static', filename='sign_language.png') }}"
+            alt="Static Example Image"
+          />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
