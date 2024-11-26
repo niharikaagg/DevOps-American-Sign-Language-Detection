@@ -1,4 +1,19 @@
+from flask import Flask, render_template, Response, jsonify
+import cv2
+import mediapipe as mp
+import pickle
+import numpy as np
+
+app = Flask(__name__)
+
+# Load the trained model
+model_dict = pickle.load(open('./trained_data_model.p', 'rb'))
+model = model_dict['model']
+
+# Initialize Mediapipe
 mp_hands = mp.solutions.hands
+mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
 # Labels dictionary
@@ -53,7 +68,4 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5001, debug=True)  # Only this line is needed
-app.py [dos] (02:02 26/11/2024)                                                                                                                                                                          64,25 Bot
--- INSERT --
-
+    app.run(debug=True)  # Only this line is needed
